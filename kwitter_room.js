@@ -2,6 +2,7 @@
 var firebaseConfig = {
       apiKey: "AIzaSyCMR7Z92IJyvYLG6Bj_rrq4a8q48Oz4FtQ",
       authDomain: "kwitter-3d7f9.firebaseapp.com",
+      databaseURL: "https://kwitter-3d7f9-default-rtdb.firebaseio.com",
       projectId: "kwitter-3d7f9",
       storageBucket: "kwitter-3d7f9.appspot.com",
       messagingSenderId: "176892074085",
@@ -13,8 +14,12 @@ var firebaseConfig = {
 
 function getData() {firebase.database().ref("/").on('value', function(snapshot) {document.getElementById("output").innerHTML = "";snapshot.forEach(function(childSnapshot) {childKey  = childSnapshot.key;
        Room_names = childKey;
-      //Start code
-
-      //End code
+     
       });});}
 getData();
+function addroom(){
+      room_name=document.getElementById("addroom").value;
+      firebase.database().ref("/").child(room_name).update({
+      purpose:"adding room"
+      });
+}
